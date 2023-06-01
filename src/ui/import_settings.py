@@ -1,7 +1,7 @@
 import os
 
 import supervisely as sly
-from supervisely.app.widgets import Button, Card, Container, DoneLabel, Progress, SelectWorkspace
+from supervisely.app.widgets import Button, Card, Container, Progress, SelectWorkspace, Text
 
 import src.globals as g
 import src.ui.connect_to_bucket as connect_to_bucket
@@ -13,7 +13,7 @@ import_button = Button(text="Start")
 progress_bar = Progress()
 progress_bar.hide()
 
-output_message = DoneLabel()
+output_message = Text()
 output_message.hide()
 
 destination_container = Container(
@@ -117,10 +117,24 @@ def import_images_project():
             sly.logger.info(f"Project: '{res_proj_name}' (ID: '{res_proj_id}') has been uploaded")
             pbar.update()
 
-    output_message.text = (
-        f"{len(selected_dirs)} projects have "
-        f"been imported to workspace: '{dst_ws_name}' ID: '{dst_ws_id}'"
-    )
+    if len(selected_dirs) == 0:
+        output_message.set(
+            (
+                "No projects have been imported. "
+                "Please select directory with project in Supervisely format"
+            ),
+            status="error",
+        )
+
+    else:
+        output_project_text = "project" if len(selected_dirs) == 1 else "projects"
+        output_message.set(
+            text=(
+                f"{len(selected_dirs)} {output_project_text} have "
+                f"been imported to workspace: '{dst_ws_name}' ID: '{dst_ws_id}'"
+            ),
+            status="success",
+        )
     output_message.show()
 
 
