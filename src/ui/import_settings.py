@@ -52,8 +52,6 @@ def import_images_project():
         local_paths.append(local_path)
 
     # find selected directories
-    project_names = []
-    projects_map = {}
     selected_dirs = []
     for path in paths:
         if sly.fs.get_file_ext(path) == "":
@@ -96,7 +94,7 @@ def import_images_project():
     dst_ws_id = destination.get_selected_id()
     dst_ws_name = g.api.workspace.get_info_by_id(dst_ws_id).name
     progress_bar.show()
-    with progress_bar(message="Importing items", total=len(local_paths) * 2) as pbar:
+    with progress_bar(message="Importing items", total=len(local_paths)) as pbar:
         for batch_remote_paths, batch_local_paths in zip(
             sly.batched(remote_paths, batch_size=g.BATCH_SIZE),
             sly.batched(local_paths, batch_size=g.BATCH_SIZE),
@@ -115,7 +113,7 @@ def import_images_project():
                 project_name=project_name,
                 progress_cb=progress_bar,
             )
-            sly.logger.info(f"Project '{res_proj_name}' has been uploaded")
+            sly.logger.info(f"Project: '{res_proj_name}' (ID: {res_proj_id}) has been uploaded")
 
     output_message.text = f"{len(selected_dirs)} projects have been imported to workspace: {dst_ws_name} ID: {dst_ws_id}"
     output_message.show()
