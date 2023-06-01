@@ -105,7 +105,9 @@ def import_images_project():
                 g.api.remote_storage.download_path(remote_path, local_path)
                 pbar.update()
 
-    with progress_bar(message="Uploading projects to Supervisely", total=len(local_paths)) as pbar:
+    with progress_bar(
+        message="Uploading projects to Supervisely", total=len(selected_dirs)
+    ) as pbar:
         for dir in selected_dirs:
             project_name = os.path.basename(dir)
             project_path = os.path.join(g.STORAGE_DIR, dir.lstrip("/"))
@@ -115,7 +117,10 @@ def import_images_project():
             sly.logger.info(f"Project: '{res_proj_name}' (ID: {res_proj_id}) has been uploaded")
             pbar.update()
 
-    output_message.text = f"{len(selected_dirs)} projects have been imported to workspace: {dst_ws_name} ID: {dst_ws_id}"
+    output_message.text = (
+        f"{len(selected_dirs)} projects have "
+        f"been imported to workspace: {dst_ws_name} ID: {dst_ws_id}"
+    )
     output_message.show()
 
 
