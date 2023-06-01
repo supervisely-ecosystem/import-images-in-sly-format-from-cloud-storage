@@ -1,16 +1,8 @@
 import os
 
 import supervisely as sly
-from supervisely.app.widgets import (
-    Button,
-    Card,
-    Container,
-    SelectWorkspace,
-    Progress,
-    DoneLabel,
-)
-from supervisely.io.fs import get_file_ext, get_file_name, remove_dir
-from supervisely.imaging.image import SUPPORTED_IMG_EXTS
+from supervisely.app.widgets import Button, Card, Container, DoneLabel, Progress, SelectWorkspace
+
 import src.globals as g
 import src.ui.connect_to_bucket as connect_to_bucket
 import src.ui.preview_bucket_items as preview_bucket_items

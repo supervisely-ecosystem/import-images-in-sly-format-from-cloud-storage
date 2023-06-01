@@ -1,4 +1,5 @@
 import os
+
 import supervisely as sly
 from supervisely.app.widgets import Button, Card, Container, Field, Input, SelectString
 
@@ -7,13 +8,12 @@ import src.ui.import_settings as import_settings
 import src.ui.preview_bucket_items as preview_bucket_items
 
 provider_selector = SelectString(
-    values=["s3", "google", "s3", "azure"],
-    labels=["s3", "google cloud storage", "amazon s3", "azure storage"],
+    values=["google", "s3", "azure"],
+    labels=["google cloud storage", "amazon s3", "azure storage"],
 )
 provider = Field(title="Provider", content=provider_selector)
 
-bucket_name_input = Input(value="remote-img-test")
-# bucket_name_input = Input()
+bucket_name_input = Input()
 connect_button = Button(text="Connect", icon="zmdi zmdi-cloud")
 bucket_name = Field(title="Bucket name", content=bucket_name_input)
 
