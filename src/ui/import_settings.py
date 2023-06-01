@@ -94,7 +94,9 @@ def import_images_project():
     dst_ws_id = destination.get_selected_id()
     dst_ws_name = g.api.workspace.get_info_by_id(dst_ws_id).name
     progress_bar.show()
-    with progress_bar(message="Importing items", total=len(local_paths)) as pbar:
+    with progress_bar(
+        message="Getting projects from cloud storage", total=len(local_paths)
+    ) as pbar:
         for batch_remote_paths, batch_local_paths in zip(
             sly.batched(remote_paths, batch_size=g.BATCH_SIZE),
             sly.batched(local_paths, batch_size=g.BATCH_SIZE),
@@ -103,17 +105,15 @@ def import_images_project():
                 g.api.remote_storage.download_path(remote_path, local_path)
                 pbar.update()
 
+    with progress_bar(message="Uploading projects to Supervisely", total=len(local_paths)) as pbar:
         for dir in selected_dirs:
             project_name = os.path.basename(dir)
             project_path = os.path.join(g.STORAGE_DIR, dir.lstrip("/"))
             res_proj_id, res_proj_name = sly.upload_project(
-                dir=project_path,
-                api=g.api,
-                workspace_id=dst_ws_id,
-                project_name=project_name,
-                progress_cb=progress_bar,
+                dir=project_path, api=g.api, workspace_id=dst_ws_id, project_name=project_name
             )
             sly.logger.info(f"Project: '{res_proj_name}' (ID: {res_proj_id}) has been uploaded")
+            pbar.update()
 
     output_message.text = f"{len(selected_dirs)} projects have been imported to workspace: {dst_ws_name} ID: {dst_ws_id}"
     output_message.show()
