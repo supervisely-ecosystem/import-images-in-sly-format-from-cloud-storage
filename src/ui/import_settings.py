@@ -114,12 +114,12 @@ def import_images_project():
             res_proj_id, res_proj_name = sly.upload_project(
                 dir=project_path, api=g.api, workspace_id=dst_ws_id, project_name=project_name
             )
-            sly.logger.info(f"Project: '{res_proj_name}' (ID: {res_proj_id}) has been uploaded")
+            sly.logger.info(f"Project: '{res_proj_name}' (ID: '{res_proj_id}') has been uploaded")
             pbar.update()
 
     output_message.text = (
         f"{len(selected_dirs)} projects have "
-        f"been imported to workspace: {dst_ws_name} ID: {dst_ws_id}"
+        f"been imported to workspace: '{dst_ws_name}' ID: '{dst_ws_id}'"
     )
     output_message.show()
 
