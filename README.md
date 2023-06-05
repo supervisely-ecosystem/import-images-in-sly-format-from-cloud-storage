@@ -1,5 +1,5 @@
 <div align="center" markdown>
-<img src=""/>
+<img src="https://github.com/supervisely-ecosystem/import-images-in-sly-format-from-cloud-storage/assets/119248312/1e1551c4-7aaf-4ad5-b1bf-a850fbd39975"/>
 
 # Import image projects in Supervisely format from cloud storage
 
@@ -34,6 +34,6 @@ List of providers:
    configuration files or in Admin UI dashboard. Learn more in docs: [link1](https://docs.supervise.ly/enterprise-edition/installation/post-installation#configure-your-instance), 
    [link2](https://docs.supervise.ly/enterprise-edition/advanced-tuning/s3#links-plugin-cloud-providers-support). 
    In case of any questions or issues, please contact tech support.
-1. Run app from `Ecosystem` Page
-2. Connect to cloud bucket, preview and select directories with projects, import image projects in Supervisely format to selected Team - Workspace. You can perform these actions as many times as needed
-3. Once you are done with the app, you should close the app manually
+1. Run app from `Ecosystem` Page.
+2. Connect to cloud bucket, preview and select directories with projects, import image projects in Supervisely format to selected Team - Workspace. You can perform these actions as many times as needed.
+3. Once you are done with the app, you should close the app manually.
