@@ -6,6 +6,7 @@
   "categories": ["import", "images"],
   "docker_image": "supervisely/base-py-sdk:6.72.23",
   "icon": "https://github.com/supervisely-ecosystem/import-images-in-sly-format-from-cloud-storage/assets/119248312/0012d299-6c2f-4248-8932-12232b03ecf9",
+  "icon_cover": true,
   "poster": "https://github.com/supervisely-ecosystem/import-images-in-sly-format-from-cloud-storage/assets/119248312/1e1551c4-7aaf-4ad5-b1bf-a850fbd39975",
   "entrypoint": "python -m uvicorn src.main:app --host 0.0.0.0 --port 8000",
   "port": 8000
