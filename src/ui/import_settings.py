@@ -16,6 +16,9 @@ progress_bar.hide()
 output_message = Text()
 output_message.hide()
 
+# info_message = Text()
+# info_message.hide()
+
 destination_container = Container(
     widgets=[destination, output_message, import_button, progress_bar]
 )
@@ -34,6 +37,7 @@ card.hide()
 def import_images_project():
     progress_bar.hide()
     output_message.hide()
+    # info_message.hide()
 
     paths = preview_bucket_items.file_viewer.get_selected_items()
     remote_paths = []
@@ -87,7 +91,7 @@ def import_images_project():
 
     if len(local_paths) == 0:
         raise sly.app.DialogWindowWarning(
-            title="There are no images to import",
+            title="There are no projects to import",
             description="Nothing to download",
         )
 
@@ -135,7 +139,10 @@ def import_images_project():
             ),
             status="success",
         )
+
+    # info_message.set(text="You can continue importing projects to another Teams/Workspace. Please, finish the app manually when done", status="info")
     output_message.show()
+    # info_message.show()
 
 
 def list_objects(api, full_dir_path):

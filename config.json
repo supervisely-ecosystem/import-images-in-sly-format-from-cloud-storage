@@ -1,8 +1,8 @@
 {
-  "name": "Import images in Supervisely format from cloud storage",
+  "name": "Import image projects in Supervisely format from cloud storage",
   "type": "app",
   "version": "2.0.0",
-  "description": "Import images in Supervisely format from cloud (Google Cloud Storage, Amazon S3, Microsoft Azure, ...)",
+  "description": "Import image projects in Supervisely format from cloud (Google Cloud Storage, Amazon S3, Microsoft Azure, ...)",
   "categories": ["import", "images"],
   "docker_image": "supervisely/base-py-sdk:6.72.23",
   "icon": "",
