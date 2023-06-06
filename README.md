@@ -37,3 +37,8 @@ List of providers:
 1. Run app from `Ecosystem` Page.
 2. Connect to cloud bucket, preview and select directories with projects, import image projects in Supervisely format to selected Team - Workspace. You can perform these actions as many times as needed.
 3. Once you are done with the app, you should close the app manually.
+
+# Screenshot
+<div align="center" markdown>
+<img src="https://github.com/supervisely-ecosystem/import-images-in-sly-format-from-cloud-storage/assets/48913536/bb1813a5-d20c-4309-85ad-e7046925e827" width=80%/>
+</div>
