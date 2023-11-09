@@ -5,7 +5,6 @@ from supervisely.app.widgets import (
     Button,
     Card,
     Container,
-    Field,
     Input,
     Select,
     Text,
@@ -39,9 +38,12 @@ provider_selector = Select(
 providet_title = Text("<b>Provider</b>", "text")
 provider = Container([providet_title, provider_selector])
 
+bucket_items = []
+if len(providers) > 0:
+    bucket_items = provider_buckets[providers[0]]
 
 bucket_name_selector = Select(
-    items=provider_buckets[providers[0]],
+    items=bucket_items,
     filterable=True,
     placeholder="Select bucket",
     width_percent=100,
