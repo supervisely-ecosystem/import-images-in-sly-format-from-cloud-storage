@@ -16,7 +16,7 @@ all_providers = [provider["defaultProtocol"].rstrip(":") for provider in all_pro
 try:
     providers_info = g.api.remote_storage.get_list_available_providers()
 except:
-    all_providers_info = []
+    providers_info = []
 
 providers = [provider["defaultProtocol"].rstrip(":") for provider in providers_info]
 
