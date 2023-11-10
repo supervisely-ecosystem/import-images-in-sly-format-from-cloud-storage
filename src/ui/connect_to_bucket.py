@@ -7,10 +7,17 @@ import src.globals as g
 import src.ui.import_settings as import_settings
 import src.ui.preview_bucket_items as preview_bucket_items
 
-all_providers_info = g.api.remote_storage.get_list_supported_providers()
+try:
+    all_providers_info = g.api.remote_storage.get_list_supported_providers()
+except:
+    all_providers_info = []
 all_providers = [provider["defaultProtocol"].rstrip(":") for provider in all_providers_info]
 
-providers_info = g.api.remote_storage.get_list_available_providers()
+try:
+    providers_info = g.api.remote_storage.get_list_available_providers()
+except:
+    all_providers_info = []
+
 providers = [provider["defaultProtocol"].rstrip(":") for provider in providers_info]
 
 provider_items = []
