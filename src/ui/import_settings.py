@@ -89,18 +89,19 @@ def import_images_project():
 
     progress_bar.show()
     validated_map = utils.validate_selected_dirs(selected_dirs, provider, bucket_name, progress_bar)
+    validated_dirs = list(validated_map.keys())
 
     if len(validated_map) > 0:
         if duplication_options.get_value() == "copy":
             project_dirs = utils.download_selected_projects(
-                selected_dirs, validated_map, progress_bar, progress_bar2
+                validated_dirs, validated_map, progress_bar, progress_bar2
             )
             dst_projects_ids = utils.upload_projects_by_path(
                 project_dirs, dst_ws_id, progress_bar, progress_bar2
             )
         else:
             dst_projects_ids = utils.upload_projects_by_links(
-                selected_dirs, validated_map, dst_ws_id, progress_bar, progress_bar2
+                validated_dirs, validated_map, dst_ws_id, progress_bar, progress_bar2
             )
 
     utils.show_result(
