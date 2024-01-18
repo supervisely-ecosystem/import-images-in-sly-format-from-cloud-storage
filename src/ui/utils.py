@@ -371,6 +371,7 @@ def show_result(
     output_message: Text,
     result_preview_widgets: List[Flexbox],
     results_widgets: ReloadableArea,
+    skipped_projects_count: int,
 ) -> None:
     if len(result_projects_ids) == 0:
         output_message.set(
@@ -384,13 +385,23 @@ def show_result(
 
     if len(result_projects_ids) > 0:
         output_project_text = "project" if len(result_projects_ids) == 1 else "projects"
-        output_message.set(
-            text=(
-                f"{len(result_projects_ids)} {output_project_text} have "
-                f"been imported to workspace: '{dst_ws_name}' ID: '{dst_ws_id}'"
-            ),
-            status="success",
-        )
+        if skipped_projects_count == 0:
+            output_message.set(
+                text=(
+                    f"{len(result_projects_ids)} {output_project_text} have "
+                    f"been imported to workspace: '{dst_ws_name}' ID: '{dst_ws_id}'"
+                ),
+                status="success",
+            )
+        else:
+            output_message.set(
+                text=(
+                    f"{len(result_projects_ids)} {output_project_text} have "
+                    f"been imported to workspace: '{dst_ws_name}' ID: '{dst_ws_id}'. "
+                    f"{skipped_projects_count} {output_project_text} have been skipped. Check logs for more information."
+                ),
+                status="warning",
+            )
 
         result_preview_widgets.append(
             Flexbox(

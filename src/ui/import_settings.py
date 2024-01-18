@@ -104,6 +104,7 @@ def import_images_project():
                 validated_dirs, validated_map, dst_ws_id, progress_bar, progress_bar2
             )
 
+    skipped_projects_count = len(selected_dirs) - len(validated_dirs)
     utils.show_result(
         dst_ws_name,
         dst_ws_id,
@@ -111,4 +112,5 @@ def import_images_project():
         output_message,
         result_preview_widgets,
         results_widgets,
+        skipped_projects_count,
     )
