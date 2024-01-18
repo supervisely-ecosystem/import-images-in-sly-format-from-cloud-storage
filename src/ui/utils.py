@@ -260,10 +260,12 @@ def upload_projects_by_path(
                     progress_cb=pbar2.update,
                 )
                 progress_bar2.hide()
-        if res_proj_id is not None:
-            dst_projects_ids.append(res_proj_id)
-            sly.logger.info(f"Project: '{res_proj_name}' (ID: '{res_proj_id}') has been uploaded")
-        pbar.update()
+            if res_proj_id is not None:
+                dst_projects_ids.append(res_proj_id)
+                sly.logger.info(
+                    f"Project: '{res_proj_name}' (ID: '{res_proj_id}') has been uploaded"
+                )
+            pbar.update()
     return dst_projects_ids
 
 
