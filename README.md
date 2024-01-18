@@ -40,5 +40,5 @@ List of providers:
 
 # Screenshot
 <div align="center" markdown>
-<img src="https://github.com/supervisely-ecosystem/import-images-in-sly-format-from-cloud-storage/assets/48913536/bb1813a5-d20c-4309-85ad-e7046925e827" width=80%/>
+<img src="https://user-images.githubusercontent.com/48913536/297813522-22a81989-9928-45fc-828a-e2bd4ddecee0.png" width=80%/>
 </div>

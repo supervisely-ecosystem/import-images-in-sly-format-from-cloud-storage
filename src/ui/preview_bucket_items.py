@@ -1,6 +1,10 @@
 from supervisely.app.widgets import Card, FileViewer
 
-file_viewer = FileViewer(files_list=[])
+file_viewer = FileViewer(
+    files_list=[],
+    selection_type="folder",
+    extended_selection=True,
+)
 
 card = Card(
     title="2️⃣ Preview and select items",

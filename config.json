@@ -4,7 +4,7 @@
 	"version": "2.0.0",
 	"description": "Import image projects in Supervisely format from cloud (Google Cloud Storage, Amazon S3, Microsoft Azure, ...)",
 	"categories": ["import", "images"],
-	"docker_image": "supervisely/import-export:6.72.181",
+	"docker_image": "supervisely/import-export:6.73.11",
 	"icon": "https://github.com/supervisely-ecosystem/import-images-in-sly-format-from-cloud-storage/assets/119248312/9cd0901c-fe90-4d9d-8981-91e287141f38",
 	"icon_cover": true,
 	"poster": "https://github.com/supervisely-ecosystem/import-images-in-sly-format-from-cloud-storage/assets/119248312/1e1551c4-7aaf-4ad5-b1bf-a850fbd39975",
