@@ -43,7 +43,7 @@ def validate_selected_dirs(
             validated_map[dir]["project_name"] = project_name
 
             remote_project_dir = f"{provider}://{dir.lstrip('/')}"
-            project_files = g.api.remote_storage.list(remote_project_dir, False)
+            project_files = g.api.remote_storage.list(remote_project_dir, False, team_id=g.TEAM_ID)
             if len(project_files) == 0:
                 sly.logger.warn(f"Project directory'{remote_project_dir}' is empty. Skipping...")
                 validated_map.pop(dir)
@@ -61,7 +61,7 @@ def validate_selected_dirs(
             remote_meta_path = f"{provider}://{bucket_name}/{remote_meta_path[0]['prefix']}/{remote_meta_path[0]['name']}"
             try:
                 local_meta_path = os.path.join(g.STORAGE_DIR, dir.lstrip("/"), "meta.json")
-                g.api.remote_storage.download_path(remote_meta_path, local_meta_path)
+                g.api.remote_storage.download_path(remote_meta_path, local_meta_path, team_id=g.TEAM_ID)
             except:
                 sly.logger.warn(
                     f"Couldn't download 'meta.json' file from '{remote_meta_path}'. Skipping..."
@@ -103,7 +103,7 @@ def validate_selected_dirs(
                 )
                 dataset_folders = [
                     file
-                    for file in g.api.remote_storage.list(remote_dataset_path, False, False, True)
+                    for file in g.api.remote_storage.list(remote_dataset_path, False, False, True, team_id=g.TEAM_ID)
                     if file["name"] in ["img", "ann"]
                 ]
                 if len(dataset_folders) != 2:
@@ -126,7 +126,7 @@ def validate_selected_dirs(
                     )
                     if base_dir == "img":
                         image_files = g.api.remote_storage.list(
-                            remote_base_dir_path, False, True, False
+                            remote_base_dir_path, False, True, False, team_id=g.TEAM_ID
                         )
                         if len(image_files) == 0:
                             sly.logger.warn(
@@ -142,7 +142,7 @@ def validate_selected_dirs(
                         )
                     if base_dir == "ann":
                         annotation_files = g.api.remote_storage.list(
-                            remote_base_dir_path, False, True, False
+                            remote_base_dir_path, False, True, False, team_id=g.TEAM_ID
                         )
                         if len(annotation_files) == 0:
                             sly.logger.warn(
@@ -218,7 +218,7 @@ def download_selected_projects(
                         dataset_images["names"], dataset_images["links"]
                     ):
                         local_img_path = os.path.join(dataset_img_path, image_name)
-                        g.api.remote_storage.download_path(image_link, local_img_path)
+                        g.api.remote_storage.download_path(image_link, local_img_path, team_id=g.TEAM_ID)
                         pbar2.update()
                     progress_bar2.hide()
 
@@ -231,7 +231,7 @@ def download_selected_projects(
                         dataset_annotations["names"], dataset_annotations["links"]
                     ):
                         local_ann_path = os.path.join(dataset_ann_path, ann_name)
-                        g.api.remote_storage.download_path(ann_link, local_ann_path)
+                        g.api.remote_storage.download_path(ann_link, local_ann_path, team_id=g.TEAM_ID)
                         pbar2.update()
                     progress_bar2.hide()
 
@@ -328,7 +328,7 @@ def upload_projects_by_links(
                         ann_jsons = []
                         for ann_name, ann_link in zip(batch_ann_names, batch_ann_links):
                             local_ann_path = os.path.join(local_ann_dir, ann_name)
-                            g.api.remote_storage.download_path(ann_link, local_ann_path)
+                            g.api.remote_storage.download_path(ann_link, local_ann_path, team_id=g.TEAM_ID)
                             ann_jsons.append(load_json_file(local_ann_path))
                         g.api.annotation.upload_jsons(batch_images_ids, ann_jsons)
                         pbar2.update(len(batch_ann_names))
@@ -353,6 +353,7 @@ def list_objects(full_dir_path: str):
             folders=False,
             recursive=True,
             start_after=start_after,
+            team_id=g.TEAM_ID,
         )
         if len(remote_objs) == 0:
             break

@@ -8,13 +8,13 @@ import src.ui.import_settings as import_settings
 import src.ui.preview_bucket_items as preview_bucket_items
 
 try:
-    all_providers_info = g.api.remote_storage.get_list_supported_providers()
+    all_providers_info = g.api.remote_storage.get_list_supported_providers(team_id=g.TEAM_ID)
 except:
     all_providers_info = []
 all_providers = [provider["defaultProtocol"].rstrip(":") for provider in all_providers_info]
 
 try:
-    providers_info = g.api.remote_storage.get_list_available_providers()
+    providers_info = g.api.remote_storage.get_list_available_providers(team_id=g.TEAM_ID)
 except:
     providers_info = []
 
@@ -164,7 +164,7 @@ def preview_items():
 
     path = f"{provider}://{bucket_name}"
     try:
-        files = g.api.remote_storage.list(path, recursive=False, limit=g.USER_PREVIEW_LIMIT + 1)
+        files = g.api.remote_storage.list(path, recursive=False, limit=g.USER_PREVIEW_LIMIT + 1, team_id=g.TEAM_ID)
     except Exception as e:
         sly.logger.warn(repr(e))
         raise sly.app.DialogWindowWarning(
@@ -196,7 +196,7 @@ def refresh_tree_viewer(current_path):
 
     path = f"{provider}://{new_path.strip('/')}"
     try:
-        files = g.api.remote_storage.list(path, recursive=False, limit=g.USER_PREVIEW_LIMIT + 1)
+        files = g.api.remote_storage.list(path, recursive=False, limit=g.USER_PREVIEW_LIMIT + 1, team_id=g.TEAM_ID)
     except Exception as e:
         sly.logger.warn(repr(e))
         raise sly.app.DialogWindowWarning(
