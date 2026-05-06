@@ -13,5 +13,5 @@
   "poster": "https://github.com/supervisely-ecosystem/import-images-in-sly-format-from-cloud-storage/assets/119248312/1e1551c4-7aaf-4ad5-b1bf-a850fbd39975",
   "entrypoint": "python -m uvicorn src.main:app --host 0.0.0.0 --port 8000",
   "port": 8000,
-  "min_instance_version": "6.15.35"
+  "instance_version": "6.15.60"
 }
